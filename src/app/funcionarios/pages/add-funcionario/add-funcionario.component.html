@@ -1,0 +1,27 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <h1>Registrar Funcionario</h1>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="container">
+  <mat-card>
+    <mat-card-content>
+      <form action="" [formGroup]="formFuncionario" (ngSubmit)="postFuncionario()">
+        <mat-form-field appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input type="text" matInput name="nome" formControlName="nome">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Email:</mat-label>
+          <input type="email" matInput name="email" formControlName="email">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Foto</mat-label>
+          <input type="text" matInput name="foto" formControlName="foto">
+        </mat-form-field>
+        <button type="submit" mat-dialog-close mat-stroked-button color="warn"
+          [disabled]="formFuncionario.invalid">Registrar</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
