@@ -9,16 +9,13 @@ import { AddFuncionarioComponent } from '../add-funcionario/add-funcionario.comp
   templateUrl: './listar-funcionarios.component.html',
   styleUrls: ['./listar-funcionarios.component.scss']
 })
-export class ListarFuncionariosComponent implements OnInit, OnDestroy{
+export class ListarFuncionariosComponent implements OnInit{
 funcionarios: Funcionario[]=[]
 colunas: Array<string> = ["id","nome","email","actions"]
   constructor(private funcionarioService:FuncionariosService, public dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.recuperarFuncionarios()
-  }
-  ngOnDestroy(){
-    console.log("teste");
   }
   deletarFuncionario(id:number){
     const confirmar = confirm("Realmente deseja deletar esse funcionário?");
