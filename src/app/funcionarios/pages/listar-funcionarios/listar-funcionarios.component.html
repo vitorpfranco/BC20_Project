@@ -22,9 +22,12 @@
         <td mat-cell *matCellDef="let funcionario"> {{funcionario.email}} </td>
       </ng-container>
       <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>Excluir</th>
-        <td mat-cell *matCellDef="let f">
-          <button mat-icon-button color="warn" (click)="deletarFuncionario(f.id)">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let funcionario">
+          <button mat-icon-button (click)="openEditFuncionario(funcionario)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deletarFuncionario(funcionario.id)">
             <mat-icon>delete</mat-icon>
           </button>
         </td>
@@ -35,7 +38,7 @@
   </main>
 </div>
 
-<div class="example-button-container" mat-raised-button (click)="openDialog('0ms', '0ms')">
+<div class="example-button-container" mat-raised-button (click)="openAddFuncionario()">
   <button mat-mini-fab color="primary" aria-label="Add Funcionario">
     <mat-icon>add</mat-icon>
   </button>

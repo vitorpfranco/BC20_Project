@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Funcionario } from '../../models/funcionario.model';
 import { FuncionariosService } from '../../services/funcionarios.service';
 import { AddFuncionarioComponent } from '../add-funcionario/add-funcionario.component';
+import { EditFuncionarioComponent } from '../edit-funcionario/edit-funcionario.component';
 
 @Component({
   selector: 'app-listar-funcionarios',
@@ -29,6 +30,9 @@ colunas: Array<string> = ["id","nome","email","actions"]
       })
     }
   }
+  editarFuncionario(id:number){
+
+  }
 
   recuperarFuncionarios():void{
     this.funcionarioService.getFuncionarios().subscribe(
@@ -41,14 +45,25 @@ colunas: Array<string> = ["id","nome","email","actions"]
     )
   }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(AddFuncionarioComponent, {
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
+  openAddFuncionario(): void {
+    this.dialog.open(AddFuncionarioComponent);
      this.dialog.afterAllClosed.subscribe(
       ()=>{
       this.recuperarFuncionarios()
      })
     }
+
+    openEditFuncionario(funcionario:Funcionario): void {
+      this.dialog.open(EditFuncionarioComponent,{
+        data: {
+          id:funcionario.id,
+          nome:funcionario.nome,
+          email:funcionario.email,
+          foto:funcionario.foto
+      }});
+       this.dialog.afterAllClosed.subscribe(
+        ()=>{
+        this.recuperarFuncionarios()
+       })
+      }
 }

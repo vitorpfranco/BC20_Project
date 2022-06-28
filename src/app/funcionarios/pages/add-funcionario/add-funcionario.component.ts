@@ -10,8 +10,6 @@ import { FuncionariosService } from '../../services/funcionarios.service';
   styleUrls: ['./add-funcionario.component.scss']
 })
 export class AddFuncionarioComponent implements OnInit {
-  funcionario!:Funcionario
-
   formFuncionario: FormGroup = new FormGroup({
     nome: new FormControl('', [ Validators.required ]),
     email: new FormControl('',[ Validators.required, Validators.email]),

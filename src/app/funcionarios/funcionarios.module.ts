@@ -7,13 +7,15 @@ import { FuncionariosRoutingModule } from './funcionarios-routing.module';
 import { ListarFuncionariosComponent } from './pages/listar-funcionarios/listar-funcionarios.component';
 import { FuncionarioComponent } from './pages/funcionario/funcionario.component';
 import { AddFuncionarioComponent } from './pages/add-funcionario/add-funcionario.component';
+import { EditFuncionarioComponent } from './pages/edit-funcionario/edit-funcionario.component';
 
 
 @NgModule({
   declarations: [
     ListarFuncionariosComponent,
     FuncionarioComponent,
-    AddFuncionarioComponent
+    AddFuncionarioComponent,
+    EditFuncionarioComponent
   ],
   imports: [
     CommonModule,

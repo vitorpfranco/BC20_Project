@@ -25,5 +25,9 @@ private readonly baseUrl:string='http://localhost:3000/funcionarios'
   postFuncionario(funcionario:Funcionario):Observable<Funcionario>{
     return this.http.post<Funcionario>((this.baseUrl),funcionario)
   }
+    
+  putFuncionario(id:number, funcionario:Funcionario):Observable<Funcionario>{
+    return this.http.put<Funcionario>((this.baseUrl+"/"+id),funcionario)
+  }
 
 }
