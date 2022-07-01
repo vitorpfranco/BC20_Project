@@ -7,6 +7,7 @@
 
 .container form {
   width: 400px;
+  height:400px;
   display: flex;
   flex-direction: column;
 }
@@ -18,4 +19,17 @@ mat-toolbar{
 }
 mat-card{
   background-color: rgba(white,1);
+}
+#file-input{
+  display:none
+}
+#previewFuncionario{
+  display:flex;
+  height:200px;
+  border-radius: 5px;
+  margin:0 auto;
+}
+
+button~button{
+  margin-bottom: 4px;
 }

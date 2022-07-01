@@ -7,7 +7,7 @@ import { FuncionariosRoutingModule } from './funcionarios-routing.module';
 import { ListarFuncionariosComponent } from './pages/listar-funcionarios/listar-funcionarios.component';
 import { FuncionarioComponent } from './pages/funcionario/funcionario.component';
 import { AddFuncionarioComponent } from './pages/add-funcionario/add-funcionario.component';
-import { EditFuncionarioComponent } from './pages/edit-funcionario/edit-funcionario.component';
+import { DeleteConfirmComponent } from './pages/delete-confirm/delete-confirm.component';
 
 
 @NgModule({
@@ -15,8 +15,7 @@ import { EditFuncionarioComponent } from './pages/edit-funcionario/edit-funciona
     ListarFuncionariosComponent,
     FuncionarioComponent,
     AddFuncionarioComponent,
-    EditFuncionarioComponent
-  ],
+    DeleteConfirmComponent],
   imports: [
     CommonModule,
     FuncionariosRoutingModule,

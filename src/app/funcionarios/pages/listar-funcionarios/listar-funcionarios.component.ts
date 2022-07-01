@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Funcionario } from '../../models/funcionario.model';
 import { FuncionariosService } from '../../services/funcionarios.service';
 import { AddFuncionarioComponent } from '../add-funcionario/add-funcionario.component';
-import { EditFuncionarioComponent } from '../edit-funcionario/edit-funcionario.component';
-
+import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component';
 @Component({
   selector: 'app-listar-funcionarios',
   templateUrl: './listar-funcionarios.component.html',
@@ -13,22 +13,29 @@ import { EditFuncionarioComponent } from '../edit-funcionario/edit-funcionario.c
 export class ListarFuncionariosComponent implements OnInit{
 funcionarios: Funcionario[]=[]
 colunas: Array<string> = ["id","nome","email","actions"]
-  constructor(private funcionarioService:FuncionariosService, public dialog:MatDialog) { }
+  constructor(private funcionarioService:FuncionariosService, public dialog:MatDialog, private snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
     this.recuperarFuncionarios()
   }
+
+
+
   deletarFuncionario(id:number){
-    const confirmar = confirm("Realmente deseja deletar esse funcionário?");
-    if(confirmar) {
-    this.funcionarioService.deletarFuncionario(id).subscribe(
-      (funcs)=>{
-        this.recuperarFuncionarios();
-      },
-      (erro)=>{
-        console.log(erro)
-      })
-    }
+    const dialog= this.dialog.open(DeleteConfirmComponent);
+    dialog.afterClosed().subscribe(
+      (boolean)=>{
+        if(boolean){
+          this.funcionarioService.deletarFuncionario(id).subscribe(
+            (funcs)=>{
+              this.recuperarFuncionarios();
+              this.snackBar.open("Funcionario deletado com sucesso!", 'Ok', {
+                duration: 4000,
+              })
+            }
+          )
+        }
+    })
   }
   editarFuncionario(id:number){
 
@@ -53,17 +60,4 @@ colunas: Array<string> = ["id","nome","email","actions"]
      })
     }
 
-    openEditFuncionario(funcionario:Funcionario): void {
-      this.dialog.open(EditFuncionarioComponent,{
-        data: {
-          id:funcionario.id,
-          nome:funcionario.nome,
-          email:funcionario.email,
-          foto:funcionario.foto
-      }});
-       this.dialog.afterAllClosed.subscribe(
-        ()=>{
-        this.recuperarFuncionarios()
-       })
-      }
 }

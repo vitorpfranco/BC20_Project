@@ -24,7 +24,7 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let funcionario">
-          <button mat-icon-button (click)="openEditFuncionario(funcionario)">
+          <button mat-icon-button>
             <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button color="warn" (click)="deletarFuncionario(funcionario.id)">
