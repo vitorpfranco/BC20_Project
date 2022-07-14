@@ -6,7 +6,7 @@
 <div class="container">
   <mat-card>
     <mat-card-content>
-      <img [src]="fotoPreview" alt="" id="previewFuncionario">
+      <img [src]="fotoPreview" alt="" id="previewFuncionario" *ngIf="fotoPreview.length > 0">
       <form action="" [formGroup]="formFuncionario" (ngSubmit)="postFuncionario()">
         <mat-form-field appearance="outline">
           <mat-label>Nome</mat-label>
@@ -18,9 +18,11 @@
         </mat-form-field>
 
         <input type="file" accept="image/*" name="foto" id="file-input" #fileinput (change)="recuperarFoto($event)">
-        <button type="button" mat-stroked-button color="primary" (click)="fileinput.click()">Selecione uma
-          imagem</button>
-        <button type="submit" mat-stroked-button color="warn" [disabled]="formFuncionario.invalid">Registrar</button>
+        <div class="actions">
+          <button type="button" mat-stroked-button color="primary" (click)="fileinput.click()">Selecione uma
+            imagem</button>
+          <button type="submit" mat-stroked-button color="warn" [disabled]="formFuncionario.invalid">Registrar</button>
+        </div>
       </form>
     </mat-card-content>
   </mat-card>

@@ -7,8 +7,6 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./delete-confirm.component.scss']
 })
 export class DeleteConfirmComponent implements OnInit {
-  deleteFalse: boolean = false;
-  deleteTrue:boolean = true;
   constructor(public dialogRef: MatDialogRef<DeleteConfirmComponent>) { }
   ngOnInit(): void {
   }

@@ -1,17 +1,31 @@
 <div class="loader" *ngIf="funcionario == undefined; else cardFuncionario">
-  <p>Procurando Funcionario...</p>
-  <mat-spinner mode="indeterminate" color="primary"></mat-spinner>
+  <p>{{ naoEncontrado ? 'Funcionário não encontrado' : 'Procurando funcionario...' }}</p>
+  <mat-spinner mode="indeterminate" color="primary" *ngIf="!naoEncontrado"></mat-spinner>
 </div>
 <ng-template #cardFuncionario>
   <mat-card class="example-card">
     <mat-card-header>
-      <img mat-card-avatar [src]="funcionario.foto.length!=0?funcionario.foto:fotoDefault">
+      <img mat-card-avatar [src]="funcionario.foto">
       <mat-card-title>{{funcionario.nome}}</mat-card-title>
       <mat-card-subtitle>{{funcionario.email}}</mat-card-subtitle>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="../">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <button mat-menu-item (click)="deletarFuncionario()">
+          <mat-icon>delete</mat-icon>
+          <span>Deletar funcionario</span>
+        </button>
+      </mat-menu>
+
     </mat-card-header>
     <div class="container">
       <mat-card-content>
-        <img [src]="fotoPreview.length!=0?fotoPreview:fotoDefault" alt="" id="previewFuncionario">
+        <img [src]="fotoPreview" id="previewFuncionario">
         <form action="" [formGroup]="formFuncionario" (ngSubmit)="atualizarFuncionario()">
           <mat-form-field appearance="outline">
             <mat-label>Nome</mat-label>
@@ -22,10 +36,13 @@
             <input type="email" matInput name="email" formControlName="email">
           </mat-form-field>
 
-          <input type="file" accept="image/*" name="foto" id="file-input" #fileinput (change)="recuperarFoto($event)">
-          <button type="button" mat-stroked-button color="primary" (click)="fileinput.click()">Selecione uma
-            imagem</button>
-          <button type="submit" mat-stroked-button color="warn" [disabled]="formFuncionario.invalid">Atualizar</button>
+          <input type="file" accept="image/*" name="foto" id="file-input" #fileinput (change)="recuperarFoto($event)"
+            formControlName="foto">
+          <div class="actions">
+            <button type="button" mat-stroked-button color="primary" (click)="fileinput.click()">Selecione uma
+              imagem</button>
+            <button type="submit" mat-stroked-button color="warn" [disabled]="desabilitar">Atualizar</button>
+          </div>
         </form>
       </mat-card-content>
     </div>

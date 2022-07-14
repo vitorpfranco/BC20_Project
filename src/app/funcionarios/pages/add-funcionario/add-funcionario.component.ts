@@ -16,7 +16,7 @@ export class AddFuncionarioComponent implements OnInit {
     nome: new FormControl('', [ Validators.required ]),
     email: new FormControl('',[ Validators.required, Validators.email])})
 foto!:File
-fotoPreview:string ='/assets/imgs/default.jpg';
+fotoPreview:string ='https://firebasestorage.googleapis.com/v0/b/appservicessoulcode.appspot.com/o/default.jpg?alt=media&token=0507ec6d-5dd0-4258-a20a-4fbb62c2e924';
   constructor(public dialogRef: MatDialogRef<AddFuncionarioComponent>, public funcionarioService: FuncionariosService, private storage: AngularFireStorage, private snackBar:MatSnackBar) { }
 
   postFuncionario():void{
