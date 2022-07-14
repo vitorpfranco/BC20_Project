@@ -9,6 +9,7 @@ import { FuncionarioComponent } from './pages/funcionario/funcionario.component'
 import { AddFuncionarioComponent } from './pages/add-funcionario/add-funcionario.component';
 import { DeleteConfirmComponent } from './dialogs/delete-confirm/delete-confirm.component';
 import { QuerSairConfirmComponent } from './dialogs/quer-sair-confirm/quer-sair-confirm.component';
+import { NavbarComponent } from '../components/navbar/navbar.component';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { QuerSairConfirmComponent } from './dialogs/quer-sair-confirm/quer-sair-
     FuncionarioComponent,
     AddFuncionarioComponent,
     DeleteConfirmComponent,
-    QuerSairConfirmComponent],
+    QuerSairConfirmComponent,
+    NavbarComponent
+  ],
   imports: [
     CommonModule,
     FuncionariosRoutingModule,

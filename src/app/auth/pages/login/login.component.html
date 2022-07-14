@@ -1,1 +1,24 @@
-<p>login works!</p>
+<div class="container">
+  <mat-card>
+    <h1>Login</h1>
+    <mat-card-content>
+      <form action="" [formGroup]="formLogin">
+        <mat-form-field appearance="outline">
+          <mat-label>Login</mat-label>
+          <input type="text" matInput name="login" formControlName="login">
+          <mat-error><span>Esse campo é obrigatório!</span></mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput name="password" formControlName="password">
+          <mat-error><span>Esse campo é obrigatório!</span></mat-error>
+        </mat-form-field>
+        <div class="actions">
+          <button type="submit" mat-stroked-button color="warn" [disabled]="formLogin.invalid">
+            <mat-icon>login</mat-icon><span>Login</span>
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
