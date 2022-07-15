@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private authService: AuthService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -17,5 +20,17 @@ export class LoginComponent implements OnInit {
     login: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required])
   })
+
+  login() {
+    const credetials = this.formLogin.value
+    this.authService.signIn(credetials).subscribe(
+      () => {
+        this.snackBar.open("Logado com sucesso", "OK", {
+          duration: 3000
+        })
+        this.router.navigateByUrl('/funcionarios')
+      }
+    )
+  }
 
 }

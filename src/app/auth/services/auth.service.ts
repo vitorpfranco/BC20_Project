@@ -6,7 +6,7 @@ import { User } from '../models/user';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthServiceService {
+export class AuthService {
 
   constructor(private http: HttpClient) { }
   private readonly baseUrl = 'http://localhost:8080'
@@ -17,5 +17,9 @@ export class AuthServiceService {
   }
   armazenarToken(token: string) {
     localStorage.setItem('authorization', token)
+  }
+
+  recuperarToken(): string {
+    return localStorage.getItem('authorization')!
   }
 }

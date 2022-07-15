@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { async } from '@firebase/util';
 import { BehaviorSubject, map, mergeMap, Observable, tap } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { Funcionario } from '../models/funcionario.model';
 
 @Injectable({
@@ -12,11 +13,13 @@ export class FuncionariosService {
   defaultIMG: string = 'https://firebasestorage.googleapis.com/v0/b/appservicessoulcode.appspot.com/o/default.jpg?alt=media&token=0507ec6d-5dd0-4258-a20a-4fbb62c2e924'
   atualizarFuncionariosSub$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 
-  private readonly baseUrl: string = 'http://localhost:3000/funcionarios'
-  constructor(private http: HttpClient, private storage: AngularFireStorage) { }
+  private readonly baseUrl: string = 'http://localhost:8080/servicos/funcionarios'
+  constructor(private http: HttpClient, private storage: AngularFireStorage, private authService: AuthService) { }
 
   getFuncionarios(): Observable<Funcionario[]> {
-    return this.http.get<Funcionario[]>(this.baseUrl)
+    const token = this.authService.recuperarToken()
+    return this.http.get<Funcionario[]>(this.baseUrl,
+      { headers: { Authorization: 'Bearer ' + token } })
   }
 
   deletarFuncionario(funcionario: Funcionario): Observable<any> {
